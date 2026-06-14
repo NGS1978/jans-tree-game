@@ -46,6 +46,10 @@
   @keyframes soGlint{0%,46%{transform:translateX(0)}53%{transform:translateX(-.5px)}61%,70%{transform:translateX(-1px)}78%{transform:translateX(.1px)}84%,100%{transform:translateX(0)}}
   .so-crown{transform-box:fill-box;transform-origin:50% 100%;animation:soCowlick 3.9s ease-in-out infinite}
   @keyframes soCowlick{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-9deg) translateX(-.4px)}}
+  .so-tilt{transform-box:fill-box;transform-origin:50% 90%;animation:soTilt 9s ease-in-out infinite}
+  @keyframes soTilt{0%,36%{transform:rotate(0deg)}45%,74%{transform:rotate(-5.5deg)}84%,100%{transform:rotate(0deg)}}
+  .so-brow{transform-box:fill-box;transform-origin:50% 100%;animation:soBrowFlick 9s ease-in-out infinite}
+  @keyframes soBrowFlick{0%,40%{transform:translateY(0)}47%,66%{transform:translateY(-.7px)}74%,100%{transform:translateY(0)}}
   .so-seal .so-wingR{transform-box:fill-box;transform-origin:97% 2%;animation:soWave 3.1s ease-in-out infinite}
   @keyframes soWave{0%{transform:rotate(0deg) scale(1)}10%{transform:rotate(-4deg) scale(1)}30%{transform:rotate(30deg) scale(1.05,1.1)}45%{transform:rotate(21deg) scale(1.03,1.06)}62%{transform:rotate(32deg) scale(1.06,1.12)}78%{transform:rotate(23deg) scale(1.03,1.06)}92%{transform:rotate(29deg) scale(1.05,1.1)}97%{transform:rotate(7deg) scale(1)}100%{transform:rotate(0deg) scale(1)}}
   .so-wingL{transform-box:fill-box;transform-origin:3% 2%;animation:soFlutterL 4.3s ease-in-out infinite}
@@ -62,12 +66,15 @@
   .so-flyer-svg{width:64px;height:70px;display:block;opacity:1;transform-origin:50% 50%}
   .fly-stage.flying .so-flyer-svg{animation:soFlyDemo 2.6s ease-in forwards}
   @keyframes soFlyDemo{0%{opacity:1;transform:translate(0,0) scale(1)}7%{transform:translate(0,-6px) scale(1.06)}20%{transform:translate(-8px,-24px) scale(1.02) rotate(-3deg)}48%{transform:translate(-34px,-86px) scale(1.2) rotate(-6deg)}76%{opacity:1;transform:translate(-74px,-164px) scale(1.46) rotate(-8deg)}100%{opacity:0;transform:translate(-106px,-236px) scale(1.62) rotate(-9deg)}}
-  .so-flyer-svg .so-wingR{transform-box:fill-box;transform-origin:90% 22%}
-  .so-flyer-svg .so-wingL{transform-box:fill-box;transform-origin:10% 22%}
-  .fly-stage.flying .so-flyer-svg .so-wingR{animation:soFlapR .22s ease-in-out infinite}
-  .fly-stage.flying .so-flyer-svg .so-wingL{animation:soFlapL .22s ease-in-out infinite}
-  @keyframes soFlapR{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-30deg)}}
-  @keyframes soFlapL{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(30deg)}}
+  .so-flyer-svg .so-wingR{transform-box:fill-box;transform-origin:92% 30%}
+  .so-flyer-svg .so-wingL{transform-box:fill-box;transform-origin:8% 30%}
+  .so-flyer-svg .so-bodyhead{transform-box:fill-box;transform-origin:50% 60%}
+  .fly-stage.flying .so-flyer-svg .so-wingR{animation:soFlapR 0.72s cubic-bezier(.34,0,.45,1) infinite}
+  .fly-stage.flying .so-flyer-svg .so-wingL{animation:soFlapL 0.72s cubic-bezier(.34,0,.45,1) infinite}
+  .fly-stage.flying .so-flyer-svg .so-bodyhead{animation:soLift 0.72s cubic-bezier(.34,0,.45,1) infinite}
+  @keyframes soFlapR{0%{transform:rotate(-34deg)}40%{transform:rotate(32deg)}80%,100%{transform:rotate(-34deg)}}
+  @keyframes soFlapL{0%{transform:rotate(34deg)}40%{transform:rotate(-32deg)}80%,100%{transform:rotate(34deg)}}
+  @keyframes soLift{0%{transform:translateY(1px)}48%{transform:translateY(-2.2px)}86%,100%{transform:translateY(1px)}}
   .so-spark{position:absolute;left:50%;bottom:36px;width:7px;height:7px;margin-left:-3px;border-radius:65% 0 65% 0;opacity:0;z-index:4}
   .so-spark.s1{background:#2E7D32}.so-spark.s2{background:#C99A2E}.so-spark.s3{background:#8bbf6b}
   .fly-stage.flying .so-spark{animation:soRise 1.15s ease-out forwards}
@@ -88,29 +95,33 @@
       <span class="so-spark s1"></span><span class="so-spark s2"></span><span class="so-spark s3"></span>
       <svg class="so-flyer-svg" viewBox="0 0 64 70" aria-hidden="true">
         <g class="so-wingR">
-          <path class="so-wing" d="M19 31 C8 27 -1 31 1 42 C4 37 11 35 21 37 C20 34 19.5 32.5 19 31 Z"/>
-          <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M16 33 C9 33 4 36 2 40"/><path d="M18 35.5 C12 35.5 7 38 5 41.5"/></g>
+          <path class="so-wing" d="M19 30 C9 24.5 -4 24 -13 29.5 C-10 30.8 -12 33.6 -9 35 C-6.4 33.6 -8.2 36.6 -5 37.2 C-2.6 35.8 -3.8 39 -0.6 38.4 C5 36.4 12 33.4 19 30 Z"/>
+          <path d="M15.5 30.8 C7 30.8 -1.5 32.6 -10 34.6" stroke="#b87340" stroke-width=".8" fill="none" opacity=".5"/>
+          <path d="M14 33 C6 33.4 -1 35 -7 37.4" stroke="#5e3415" stroke-width=".45" fill="none" opacity=".4"/>
         </g>
         <g class="so-wingL">
-          <path class="so-wing" d="M45 31 C56 27 65 31 63 42 C60 37 53 35 43 37 C44 34 44.5 32.5 45 31 Z"/>
-          <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M48 33 C55 33 60 36 62 40"/><path d="M46 35.5 C52 35.5 57 38 59 41.5"/></g>
+          <path class="so-wing" d="M45 30 C55 24.5 68 24 77 29.5 C74 30.8 76 33.6 73 35 C70.4 33.6 72.2 36.6 69 37.2 C66.6 35.8 67.8 39 64.6 38.4 C59 36.4 52 33.4 45 30 Z"/>
+          <path d="M48.5 30.8 C57 30.8 65.5 32.6 74 34.6" stroke="#b87340" stroke-width=".8" fill="none" opacity=".5"/>
+          <path d="M50 33 C58 33.4 65 35 71 37.4" stroke="#5e3415" stroke-width=".45" fill="none" opacity=".4"/>
         </g>
-        <path class="so-body" d="M32 13 C45 13 51 23 51 35 C51 48 43 56 32 56 C21 56 13 48 13 35 C13 23 19 13 32 13 Z"/>
-        <path d="M32 13 C24 13 18.5 18 15.5 26 C20.5 21 26 20 32 20 C38 20 43.5 21 48.5 26 C45.5 18 40 13 32 13 Z" fill="#b87340" opacity=".5"/>
-        <path d="M30.9 16 C30.1 12.9 30.5 10.1 33 9.1 C35 8.6 35.8 10.5 34.4 11.8 C33.4 11.3 32.5 12 32.1 13.4 C31.8 12.2 31.4 11.7 30.9 16 Z" fill="#b87340"/>
-        <path class="so-face" d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z"/>
-        <path d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z" fill="none" stroke="#8a5226" stroke-width="1" opacity=".45"/>
-        <ellipse cx="25.8" cy="31" rx="6.3" ry="5.9" fill="#3a2812"/><ellipse cx="25.8" cy="31.2" rx="5.3" ry="4.9" fill="#15100a"/>
-        <ellipse cx="38.2" cy="31" rx="6.3" ry="5.9" fill="#3a2812"/><ellipse cx="38.2" cy="31.2" rx="5.3" ry="4.9" fill="#15100a"/>
-        <circle cx="24.8" cy="28.9" r="2.1" fill="#fff" opacity=".95"/><circle cx="37.2" cy="28.9" r="2.1" fill="#fff" opacity=".95"/>
-        <path class="so-beak" d="M32 34 C30.4 34 29.2 35 29.4 36.6 C29.6 38.3 31 39.8 32 39.8 C33 39.8 34.4 38.3 34.6 36.6 C34.8 35 33.6 34 32 34 Z"/>
-        <ellipse cx="21.8" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/><ellipse cx="42.2" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/>
-        <g transform="rotate(-9 32 60)">
-          <rect x="23.5" y="53" width="17" height="11.5" rx="1.4" fill="#fffdf3" stroke="#7a5a20" stroke-width="1"/>
-          <path d="M24 53.6 L32 59.4 L40 53.6" fill="none" stroke="#7a5a20" stroke-width="1"/>
-          <circle cx="32" cy="58.8" r="1.9" fill="#C0392B"/>
+        <g class="so-bodyhead">
+          <path class="so-body" d="M32 13 C45 13 51 23 51 35 C51 48 43 56 32 56 C21 56 13 48 13 35 C13 23 19 13 32 13 Z"/>
+          <path d="M32 13 C24 13 18.5 18 15.5 26 C20.5 21 26 20 32 20 C38 20 43.5 21 48.5 26 C45.5 18 40 13 32 13 Z" fill="#b87340" opacity=".5"/>
+          <path d="M30.9 16 C30.1 12.9 30.5 10.1 33 9.1 C35 8.6 35.8 10.5 34.4 11.8 C33.4 11.3 32.5 12 32.1 13.4 C31.8 12.2 31.4 11.7 30.9 16 Z" fill="#b87340"/>
+          <path class="so-face" d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z"/>
+          <path d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z" fill="none" stroke="#8a5226" stroke-width="1" opacity=".45"/>
+          <path d="M18.8 26 Q24.8 22.8 30.6 25.2" stroke="#9a6228" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".62"/>
+          <path d="M45.8 24.6 Q39.2 21.2 33.4 24.4" stroke="#9a6228" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".66"/>
+          <ellipse cx="24.8" cy="31" rx="6.1" ry="5.8" fill="#3a2812"/><ellipse cx="24.8" cy="31.2" rx="5.1" ry="4.8" fill="#15100a"/>
+          <ellipse cx="39.2" cy="31" rx="5.9" ry="5.6" fill="#3a2812"/><ellipse cx="39.2" cy="31.2" rx="4.9" ry="4.6" fill="#15100a"/>
+          <circle cx="23.9" cy="29" r="2" fill="#fff" opacity=".95"/><circle cx="38.3" cy="29" r="1.9" fill="#fff" opacity=".95"/>
+          <path class="so-beak" d="M32 34 C30.4 34 29.2 35 29.4 36.6 C29.6 38.3 31 39.8 32 39.8 C33 39.8 34.4 38.3 34.6 36.6 C34.8 35 33.6 34 32 34 Z"/>
+          <path d="M32 34.2 C30.8 34.4 30.2 35.3 30.3 36.5 L33.7 36.5 C33.8 35.3 33.2 34.4 32 34.2 Z" fill="#fff" opacity=".2"/>
+          <path d="M29.3 39.8 Q31.6 41.8 33.9 40.7 Q35 40.1 35.4 39" stroke="#7a531f" stroke-width=".85" fill="none" stroke-linecap="round" opacity=".5"/>
+          <ellipse cx="21.8" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/><ellipse cx="42.2" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/>
+          <g transform="rotate(-9 32 60)"><rect x="23.5" y="53" width="17" height="11.5" rx="1.4" fill="#fffdf3" stroke="#7a5a20" stroke-width="1"/><path d="M24 53.6 L32 59.4 L40 53.6" fill="none" stroke="#7a5a20" stroke-width="1"/><circle cx="32" cy="58.8" r="1.9" fill="#C0392B"/></g>
+          <g fill="#d8a85c"><ellipse cx="28.5" cy="53.5" rx="1.4" ry="1.9"/><ellipse cx="35.5" cy="53.5" rx="1.4" ry="1.9"/></g>
         </g>
-        <g fill="#d8a85c"><ellipse cx="28.5" cy="53.5" rx="1.4" ry="1.9"/><ellipse cx="35.5" cy="53.5" rx="1.4" ry="1.9"/></g>
       </svg>
     </span>
   </div>
@@ -159,6 +170,7 @@
     <path d="M31.6 8 C31.3 5.6 31.9 3.9 33.7 3.2" fill="none" stroke="#6f3e1c" stroke-width=".5" opacity=".35"/>
   </g>
   <g class="so-head">
+   <g class="so-tilt">
     <path class="so-face" d="M32 13 C21 11 13 18 13 29 C13 40 21 47 32 49 C43 47 51 40 51 29 C51 18 43 11 32 13 Z"/>
     <path d="M32 13 C24 11.6 17.5 15.5 15 23 C20 18 26 16.5 32 16.5 C38 16.5 44 18 49 23 C46.5 15.5 40 11.6 32 13 Z" fill="#fbeed0" opacity=".5"/>
     <path d="M32 49 C39 47.5 45 43.5 48.4 37 C44 41 38 43 32 43 C26 43 20 41 15.6 37 C19 43.5 25 47.5 32 49 Z" fill="#d9be8e" opacity=".5"/>
@@ -170,34 +182,33 @@
       <path class="so-face" d="M49 38 q4 1 5 3.6 q-4 -1.4 -6 -1.8 Z"/>
     </g>
     <path d="M32 16 C31 24 31 36 32 47" stroke="#cdaf7c" stroke-width="1" fill="none" opacity=".5"/>
-    <path d="M19 20 Q24.5 16.8 30 19.4" stroke="#a87238" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/>
-    <path d="M45 20 Q39.5 16.8 34 19.4" stroke="#a87238" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/>
+    <path d="M32 16.5 C23 15 16 20.6 16 29 C16 38 23.5 44 32 45.6 C40.5 44 48 38 48 29 C48 20.6 41 15 32 16.5 Z" fill="none" stroke="#b88a52" stroke-width=".7" opacity=".4"/>
+    <path d="M32 19 C25.2 17.9 19.6 22 19.6 29 C19.6 36.2 25.8 41 32 42.4 C38.2 41 44.4 36.2 44.4 29 C44.4 22 38.8 17.9 32 19 Z" fill="none" stroke="#cdaf7c" stroke-width=".55" opacity=".3"/>
+    <path class="so-brow" d="M17.8 20 Q24.3 16.7 30.4 19.2" stroke="#9a6228" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".62"/>
+    <path class="so-brow" d="M46.2 18 Q39.7 14.3 33.6 17.8" stroke="#9a6228" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".66"/>
     <g class="so-eyes">
-      <ellipse cx="25.3" cy="29" rx="7.8" ry="7.3" fill="#3a2812"/>
-      <ellipse cx="25.3" cy="29.2" rx="6.7" ry="6.1" fill="#15100a"/>
-      <ellipse cx="38.7" cy="29" rx="7.8" ry="7.3" fill="#3a2812"/>
-      <ellipse cx="38.7" cy="29.2" rx="6.7" ry="6.1" fill="#15100a"/>
+      <ellipse cx="24.3" cy="29.2" rx="7.3" ry="7.1" fill="#3a2812"/><ellipse cx="24.3" cy="29.5" rx="6.2" ry="6" fill="#15100a"/>
+      <ellipse cx="39.7" cy="29.2" rx="7.1" ry="6.9" fill="#3a2812"/><ellipse cx="39.7" cy="29.5" rx="6" ry="5.8" fill="#15100a"/>
     </g>
     <g class="so-glint" fill="#fff">
-      <circle cx="24.3" cy="26.6" r="2.6" opacity=".95"/>
-      <circle cx="26.7" cy="31" r="1.2" opacity=".5"/>
-      <circle cx="37.7" cy="26.6" r="2.6" opacity=".95"/>
-      <circle cx="40.1" cy="31" r="1.2" opacity=".5"/>
+      <circle cx="23.3" cy="26.9" r="2.5" opacity=".95"/><circle cx="25.6" cy="31.3" r="1.1" opacity=".5"/>
+      <circle cx="38.8" cy="26.9" r="2.4" opacity=".95"/><circle cx="41" cy="31.3" r="1.1" opacity=".5"/>
     </g>
     <path class="so-beak" d="M32 32 C29.9 32 28.5 33.2 28.7 35 C28.9 37 31 38.9 32 38.9 C33 38.9 35.1 37 35.3 35 C35.5 33.2 34.1 32 32 32 Z"/>
-    <path d="M31 32.6 C30 33.2 29.8 34.2 30 35.2 C31 34.3 32 34.1 33 34.3 C33 33.2 32.2 32.6 31 32.6 Z" fill="#e7cf95" opacity=".6"/>
-    <path d="M29.3 39 Q32 41 34.7 39" stroke="#7a531f" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".5"/>
+    <path d="M32 32.2 C30.7 32.4 30 33.4 30.1 34.7 L33.9 34.7 C34 33.4 33.3 32.4 32 32.2 Z" fill="#fff" opacity=".2"/>
+    <path d="M28.9 39 Q31.4 41.2 33.8 40 Q35 39.4 35.4 38.2" stroke="#7a531f" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".55"/>
     <ellipse cx="20.5" cy="36" rx="3.3" ry="2.3" fill="#ed9684" opacity=".5"/>
     <ellipse cx="43.5" cy="36" rx="3.3" ry="2.3" fill="#ed9684" opacity=".5"/>
     <g class="so-lid left">
-      <circle cx="25.3" cy="29" r="8" class="so-face"/>
-      <path d="M17.8 29 Q25.3 33.6 32.8 29" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="24.3" cy="29.2" r="7.6" class="so-face"/>
+      <path d="M16.8 29.2 Q24.3 33.8 31.8 29.2" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
     </g>
     <g class="so-lid both">
-      <circle cx="25.3" cy="29" r="8" class="so-face"/>
-      <circle cx="38.7" cy="29" r="8" class="so-face"/>
-      <path d="M17.8 29 Q25.3 33.6 32.8 29 M31.2 29 Q38.7 33.6 46.2 29" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="24.3" cy="29.2" r="7.6" class="so-face"/>
+      <circle cx="39.7" cy="29.2" r="7.4" class="so-face"/>
+      <path d="M16.8 29.2 Q24.3 33.8 31.8 29.2 M32.3 29.2 Q39.7 33.8 47.1 29.2" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
     </g>
+   </g>
   </g>
 </svg>
   </template>
