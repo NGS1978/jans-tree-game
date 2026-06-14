@@ -55,11 +55,65 @@
   .so-lid.left{animation:soWink 13s ease-in-out infinite}
   @keyframes soBlink{0%,12%{transform:scaleY(0)}14%{transform:scaleY(1)}19%{transform:scaleY(0)}100%{transform:scaleY(0)}}
   @keyframes soWink{0%,30%{transform:scaleY(0)}33%{transform:scaleY(1)}40%{transform:scaleY(1)}44%{transform:scaleY(0)}100%{transform:scaleY(0)}}
-  @media (prefers-reduced-motion:reduce){.so-owl,.so-head,.so-eyes,.so-glint,.so-crown,.so-wingR,.so-wingL,.so-lid,.so-sheen{animation:none!important}}
+  /* ---- flight demo ---- */
+  .fly-stage{position:relative;height:300px;max-width:360px;margin:6px auto 0;display:flex;flex-direction:column-reverse;align-items:center;overflow:hidden;border-radius:16px;background:rgba(122,90,46,.07)}
+  .fly-stage .share-btn{margin-bottom:20px;cursor:pointer}
+  .so-flight{--so-body:#9a5a30;--so-wing:#7c451f;--so-face:#ecd29a;--so-beak:#b8893f;position:absolute;left:50%;bottom:30px;width:64px;height:70px;margin-left:-32px;pointer-events:none;z-index:5}
+  .so-flyer-svg{width:64px;height:70px;display:block;opacity:0;transform-origin:50% 50%}
+  .fly-stage.flying .so-flyer-svg{animation:soFlyDemo 2.5s linear forwards}
+  @keyframes soFlyDemo{0%{opacity:0;transform:translate(0,0) scale(.5)}5%{opacity:1;transform:translate(0,-3px) scale(.55)}16%{transform:translate(-6px,-18px) scale(.66)}40%{transform:translate(-30px,-78px) scale(.95) rotate(-5deg)}70%{transform:translate(-66px,-150px) scale(1.2) rotate(-7deg)}100%{opacity:1;transform:translate(-104px,-232px) scale(1.42) rotate(-8deg)}}
+  .so-flyer-svg .so-wingR{transform-box:fill-box;transform-origin:90% 22%}
+  .so-flyer-svg .so-wingL{transform-box:fill-box;transform-origin:10% 22%}
+  .fly-stage.flying .so-flyer-svg .so-wingR{animation:soFlapR .22s ease-in-out infinite}
+  .fly-stage.flying .so-flyer-svg .so-wingL{animation:soFlapL .22s ease-in-out infinite}
+  @keyframes soFlapR{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-30deg)}}
+  @keyframes soFlapL{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(30deg)}}
+  .so-spark{position:absolute;left:50%;bottom:36px;width:7px;height:7px;margin-left:-3px;border-radius:65% 0 65% 0;opacity:0;z-index:4}
+  .so-spark.s1{background:#2E7D32}.so-spark.s2{background:#C99A2E}.so-spark.s3{background:#8bbf6b}
+  .fly-stage.flying .so-spark{animation:soRise 1.15s ease-out forwards}
+  .fly-stage.flying .so-spark.s2{animation-delay:.12s}
+  .fly-stage.flying .so-spark.s3{animation-delay:.24s}
+  @keyframes soRise{0%{opacity:0;transform:translate(0,0) scale(.4)}25%{opacity:.9}100%{opacity:0;transform:translate(-72px,-94px) scale(1) rotate(160deg)}}
+  @media (prefers-reduced-motion:reduce){.so-owl,.so-head,.so-eyes,.so-glint,.so-crown,.so-wingR,.so-wingL,.so-lid,.so-sheen,.so-flyer-svg,.so-spark{animation:none!important}}
 </style></head><body>
   <h1>Let's Identify Trees! — the Share owl</h1>
   <p class="note">A cute tawny owlet who waves goodbye from the Share button. Give it a few seconds — it breathes, blinks, winks, waves its wing, and turns its head to peek.</p>
   <div class="row"><span class="share-wrap"><span class="so-seal big"><span class="so-sheen"></span></span></span></div>
+
+  <h2>Tap Share and off it flies (auto-replays)</h2>
+  <p class="note">The owlet lifts off carrying a wax-sealed letter — same flight your game already uses, now with the new owl. Tap the button, or just watch it loop.</p>
+  <div class="fly-stage" id="flyStage">
+    <button class="share-btn" id="flyBtn">Share me with a friend</button>
+    <span class="so-flight">
+      <span class="so-spark s1"></span><span class="so-spark s2"></span><span class="so-spark s3"></span>
+      <svg class="so-flyer-svg" viewBox="0 0 64 70" aria-hidden="true">
+        <g class="so-wingR">
+          <path class="so-wing" d="M19 31 C8 27 -1 31 1 42 C4 37 11 35 21 37 C20 34 19.5 32.5 19 31 Z"/>
+          <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M16 33 C9 33 4 36 2 40"/><path d="M18 35.5 C12 35.5 7 38 5 41.5"/></g>
+        </g>
+        <g class="so-wingL">
+          <path class="so-wing" d="M45 31 C56 27 65 31 63 42 C60 37 53 35 43 37 C44 34 44.5 32.5 45 31 Z"/>
+          <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M48 33 C55 33 60 36 62 40"/><path d="M46 35.5 C52 35.5 57 38 59 41.5"/></g>
+        </g>
+        <path class="so-body" d="M32 13 C45 13 51 23 51 35 C51 48 43 56 32 56 C21 56 13 48 13 35 C13 23 19 13 32 13 Z"/>
+        <path d="M32 13 C24 13 18.5 18 15.5 26 C20.5 21 26 20 32 20 C38 20 43.5 21 48.5 26 C45.5 18 40 13 32 13 Z" fill="#b87340" opacity=".5"/>
+        <path d="M30.9 16 C30.1 12.9 30.5 10.1 33 9.1 C35 8.6 35.8 10.5 34.4 11.8 C33.4 11.3 32.5 12 32.1 13.4 C31.8 12.2 31.4 11.7 30.9 16 Z" fill="#b87340"/>
+        <path class="so-face" d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z"/>
+        <path d="M32 19 C23.5 17.6 17 22.8 17 31 C17 39 23.5 44 32 45.4 C40.5 44 47 39 47 31 C47 22.8 40.5 17.6 32 19 Z" fill="none" stroke="#8a5226" stroke-width="1" opacity=".45"/>
+        <ellipse cx="25.8" cy="31" rx="6.3" ry="5.9" fill="#3a2812"/><ellipse cx="25.8" cy="31.2" rx="5.3" ry="4.9" fill="#15100a"/>
+        <ellipse cx="38.2" cy="31" rx="6.3" ry="5.9" fill="#3a2812"/><ellipse cx="38.2" cy="31.2" rx="5.3" ry="4.9" fill="#15100a"/>
+        <circle cx="24.8" cy="28.9" r="2.1" fill="#fff" opacity=".95"/><circle cx="37.2" cy="28.9" r="2.1" fill="#fff" opacity=".95"/>
+        <path class="so-beak" d="M32 34 C30.4 34 29.2 35 29.4 36.6 C29.6 38.3 31 39.8 32 39.8 C33 39.8 34.4 38.3 34.6 36.6 C34.8 35 33.6 34 32 34 Z"/>
+        <ellipse cx="21.8" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/><ellipse cx="42.2" cy="37.4" rx="2.7" ry="1.8" fill="#ed9684" opacity=".5"/>
+        <g transform="rotate(-9 32 60)">
+          <rect x="23.5" y="53" width="17" height="11.5" rx="1.4" fill="#fffdf3" stroke="#7a5a20" stroke-width="1"/>
+          <path d="M24 53.6 L32 59.4 L40 53.6" fill="none" stroke="#7a5a20" stroke-width="1"/>
+          <circle cx="32" cy="58.8" r="1.9" fill="#C0392B"/>
+        </g>
+        <g fill="#d8a85c"><ellipse cx="28.5" cy="53.5" rx="1.4" ry="1.9"/><ellipse cx="35.5" cy="53.5" rx="1.4" ry="1.9"/></g>
+      </svg>
+    </span>
+  </div>
 
   <h2>On the Share button (real size)</h2>
   <div class="row"><span class="share-wrap"><button class="share-btn">Share me with a friend<span class="so-seal badge"><span class="so-sheen"></span></span></button></span></div>
@@ -150,5 +204,9 @@
   <script>
     var TPL=document.getElementById('owltpl').innerHTML;
     document.querySelectorAll('.so-seal').forEach(function(s){s.insertAdjacentHTML('beforeend',TPL);});
+    var stage=document.getElementById('flyStage');
+    function fly(){stage.classList.remove('flying');void stage.offsetWidth;stage.classList.add('flying');setTimeout(function(){stage.classList.remove('flying');},2600);}
+    document.getElementById('flyBtn').addEventListener('click',fly);
+    setTimeout(fly,900);setInterval(fly,4200);
   </script>
 </body></html>
