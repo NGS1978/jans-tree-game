@@ -58,10 +58,10 @@
   /* ---- flight demo ---- */
   .fly-stage{position:relative;height:300px;max-width:360px;margin:6px auto 0;display:flex;flex-direction:column-reverse;align-items:center;overflow:hidden;border-radius:16px;background:rgba(122,90,46,.07)}
   .fly-stage .share-btn{margin-bottom:20px;cursor:pointer}
-  .so-flight{--so-body:#9a5a30;--so-wing:#7c451f;--so-face:#ecd29a;--so-beak:#b8893f;position:absolute;left:50%;bottom:30px;width:64px;height:70px;margin-left:-32px;pointer-events:none;z-index:5}
-  .so-flyer-svg{width:64px;height:70px;display:block;opacity:0;transform-origin:50% 50%}
-  .fly-stage.flying .so-flyer-svg{animation:soFlyDemo 2.5s linear forwards}
-  @keyframes soFlyDemo{0%{opacity:0;transform:translate(0,0) scale(.5)}5%{opacity:1;transform:translate(0,-3px) scale(.55)}16%{transform:translate(-6px,-18px) scale(.66)}40%{transform:translate(-30px,-78px) scale(.95) rotate(-5deg)}70%{transform:translate(-66px,-150px) scale(1.2) rotate(-7deg)}100%{opacity:1;transform:translate(-104px,-232px) scale(1.42) rotate(-8deg)}}
+  .so-flight{--so-body:#9a5a30;--so-wing:#7c451f;--so-face:#ecd29a;--so-beak:#b8893f;position:absolute;left:50%;bottom:46px;width:64px;height:70px;margin-left:-32px;pointer-events:none;z-index:5}
+  .so-flyer-svg{width:64px;height:70px;display:block;opacity:1;transform-origin:50% 50%}
+  .fly-stage.flying .so-flyer-svg{animation:soFlyDemo 2.6s ease-in forwards}
+  @keyframes soFlyDemo{0%{opacity:1;transform:translate(0,0) scale(1)}7%{transform:translate(0,-6px) scale(1.06)}20%{transform:translate(-8px,-24px) scale(1.02) rotate(-3deg)}48%{transform:translate(-34px,-86px) scale(1.2) rotate(-6deg)}76%{opacity:1;transform:translate(-74px,-164px) scale(1.46) rotate(-8deg)}100%{opacity:0;transform:translate(-106px,-236px) scale(1.62) rotate(-9deg)}}
   .so-flyer-svg .so-wingR{transform-box:fill-box;transform-origin:90% 22%}
   .so-flyer-svg .so-wingL{transform-box:fill-box;transform-origin:10% 22%}
   .fly-stage.flying .so-flyer-svg .so-wingR{animation:soFlapR .22s ease-in-out infinite}
@@ -74,7 +74,7 @@
   .fly-stage.flying .so-spark.s2{animation-delay:.12s}
   .fly-stage.flying .so-spark.s3{animation-delay:.24s}
   @keyframes soRise{0%{opacity:0;transform:translate(0,0) scale(.4)}25%{opacity:.9}100%{opacity:0;transform:translate(-72px,-94px) scale(1) rotate(160deg)}}
-  @media (prefers-reduced-motion:reduce){.so-owl,.so-head,.so-eyes,.so-glint,.so-crown,.so-wingR,.so-wingL,.so-lid,.so-sheen,.so-flyer-svg,.so-spark{animation:none!important}}
+  /* preview page: animations always play so the motion is visible on any device, even with Reduce Motion on */
 </style></head><body>
   <h1>Let's Identify Trees! — the Share owl</h1>
   <p class="note">A cute tawny owlet who waves goodbye from the Share button. Give it a few seconds — it breathes, blinks, winks, waves its wing, and turns its head to peek.</p>
