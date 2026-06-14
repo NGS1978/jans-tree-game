@@ -1,0 +1,154 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="color-scheme" content="only light">
+<title>Owl preview — Jan's Tree Game</title>
+<style>
+  :root{color-scheme:only light}
+  body{margin:0;background:#FBF6E2;color:#5a4a2a;font-family:Georgia,'Times New Roman',serif;text-align:center;padding:18px 14px 60px}
+  h1{font-size:21px;font-weight:600;margin:6px 0 2px}
+  h2{font-size:15px;font-weight:600;margin:34px 0 10px;color:#7a5a2e}
+  p.note{font-size:13px;color:#8a7a55;max-width:340px;margin:4px auto 8px;line-height:1.5}
+  .row{display:flex;gap:30px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .wag-band{background:#241a12;border-radius:18px;padding:22px 14px 26px;margin:18px auto 0;max-width:380px}
+  .wag-band h2{color:#e8c24a}
+  /* ---- owl ---- */
+  .share-wrap{--so-body:#9a5a30;--so-wing:#7c451f;--so-face:#ecd29a;--so-beak:#b8893f;position:relative;display:inline-block}
+  .share-wrap.wag{--so-body:#E8C24A;--so-wing:#8A6A1E;--so-face:#FFF3D6;--so-beak:#C8881F}
+  .so-body{fill:var(--so-body)}.so-wing{fill:var(--so-wing)}.so-face{fill:var(--so-face)}.so-beak{fill:var(--so-beak)}.so-streak{stroke:var(--so-streak,var(--so-wing))}
+  .so-seal{color-scheme:light;position:relative;overflow:hidden;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 38% 32%,#8FC0E8,#3D72A8 60%,#285685);box-shadow:0 5px 16px rgba(20,50,90,.45), inset 0 2px 6px rgba(255,255,255,.55), inset 0 -9px 16px rgba(15,45,85,.4)}
+  .wag .so-seal{background:radial-gradient(circle at 38% 32%,#7d5c26,#4f3a16 62%,#2c2010);box-shadow:0 5px 16px rgba(0,0,0,.5), inset 0 2px 6px rgba(255,226,150,.4), inset 0 -9px 16px rgba(0,0,0,.45)}
+  .so-seal::after{content:'';position:absolute;border-radius:50%;border:2px dashed rgba(232,244,255,.6);z-index:4;pointer-events:none}
+  .wag .so-seal::after{border-color:rgba(255,222,140,.55)}
+  .big{width:200px;height:200px}.big::after{inset:13px}
+  .big .so-owl{height:178px;width:auto}
+  .badge{width:52px;height:52px}.badge::after{inset:3px;border-width:1px}
+  .badge .so-owl{height:50px;width:auto}
+  .badge .so-streak,.badge .so-tuft{display:none}
+  .badge .so-wingR g[stroke],.badge .so-wingL g[stroke],.badge .so-wingR path[stroke],.badge .so-wingL path[stroke]{display:none}
+  .badge .so-rim{stroke-width:1.6;opacity:.62}
+  .badge{--so-beak:#a06a28}
+  .so-owl{display:block;transform-origin:50% 80%}
+  .so-sheen{position:absolute;top:0;bottom:0;left:0;width:62%;pointer-events:none;z-index:3;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.4) 50%,transparent 60%);animation:soSheen 7s ease-in-out infinite}
+  @keyframes soSheen{0%,68%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
+  /* share button mock */
+  .share-btn{display:inline-flex;align-items:center;gap:12px;border:none;cursor:default;
+    font-family:Georgia,serif;font-size:16px;color:#fff;background:linear-gradient(#5a8f4e,#447a3a);
+    padding:8px 10px 8px 22px;border-radius:34px;box-shadow:0 4px 12px rgba(40,80,40,.35)}
+  .wag .share-btn{background:linear-gradient(#8a6a1e,#5f4715)}
+  /* animations */
+  .so-owl{transform-origin:50% 86%;animation:soBob 3.7s ease-in-out infinite}
+  @keyframes soBob{0%,100%{transform:translateY(0) scaleY(1) rotate(0deg)}50%{transform:translateY(-2.4px) scaleY(1.03) rotate(-1deg)}}
+  .so-head{transform-box:fill-box;transform-origin:50% 74%;animation:soHeadTurn 12s ease-in-out infinite}
+  @keyframes soHeadTurn{0%,46%{transform:translateX(0) scaleX(1) skewY(0deg) rotate(0deg)}53%{transform:translateX(-1px) scaleX(.97) rotate(-2deg)}61%,70%{transform:translateX(-3.4px) scaleX(.9) skewY(-2deg) rotate(-6deg)}78%{transform:translateX(.5px) scaleX(1) rotate(1deg)}84%,100%{transform:translateX(0) scaleX(1) skewY(0deg) rotate(0deg)}}
+  .so-eyes{transform-box:fill-box;transform-origin:50% 50%;animation:soGaze 12s ease-in-out infinite}
+  @keyframes soGaze{0%,46%{transform:translateX(0) scaleX(1)}53%{transform:translateX(-1.6px)}61%,70%{transform:translateX(-3.1px) scaleX(.93)}78%{transform:translateX(.4px)}84%,100%{transform:translateX(0) scaleX(1)}}
+  .so-glint{transform-box:fill-box;transform-origin:50% 50%;animation:soGlint 12s ease-in-out infinite}
+  @keyframes soGlint{0%,46%{transform:translateX(0)}53%{transform:translateX(-.5px)}61%,70%{transform:translateX(-1px)}78%{transform:translateX(.1px)}84%,100%{transform:translateX(0)}}
+  .so-crown{transform-box:fill-box;transform-origin:50% 100%;animation:soCowlick 3.9s ease-in-out infinite}
+  @keyframes soCowlick{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-9deg) translateX(-.4px)}}
+  .so-seal .so-wingR{transform-box:fill-box;transform-origin:97% 2%;animation:soWave 3.1s ease-in-out infinite}
+  @keyframes soWave{0%{transform:rotate(0deg) scale(1)}10%{transform:rotate(-4deg) scale(1)}30%{transform:rotate(30deg) scale(1.05,1.1)}45%{transform:rotate(21deg) scale(1.03,1.06)}62%{transform:rotate(32deg) scale(1.06,1.12)}78%{transform:rotate(23deg) scale(1.03,1.06)}92%{transform:rotate(29deg) scale(1.05,1.1)}97%{transform:rotate(7deg) scale(1)}100%{transform:rotate(0deg) scale(1)}}
+  .so-wingL{transform-box:fill-box;transform-origin:3% 2%;animation:soFlutterL 4.3s ease-in-out infinite}
+  @keyframes soFlutterL{0%,100%{transform:rotate(0deg)}50%{transform:rotate(2deg)}}
+  .so-lid{transform-box:fill-box;transform-origin:center top;transform:scaleY(0)}
+  .so-lid.both{animation:soBlink 10s ease-in-out infinite}
+  .so-lid.left{animation:soWink 13s ease-in-out infinite}
+  @keyframes soBlink{0%,12%{transform:scaleY(0)}14%{transform:scaleY(1)}19%{transform:scaleY(0)}100%{transform:scaleY(0)}}
+  @keyframes soWink{0%,30%{transform:scaleY(0)}33%{transform:scaleY(1)}40%{transform:scaleY(1)}44%{transform:scaleY(0)}100%{transform:scaleY(0)}}
+  @media (prefers-reduced-motion:reduce){.so-owl,.so-head,.so-eyes,.so-glint,.so-crown,.so-wingR,.so-wingL,.so-lid,.so-sheen{animation:none!important}}
+</style></head><body>
+  <h1>Let's Identify Trees! — the Share owl</h1>
+  <p class="note">A cute tawny owlet who waves goodbye from the Share button. Give it a few seconds — it breathes, blinks, winks, waves its wing, and turns its head to peek.</p>
+  <div class="row"><span class="share-wrap"><span class="so-seal big"><span class="so-sheen"></span></span></span></div>
+
+  <h2>On the Share button (real size)</h2>
+  <div class="row"><span class="share-wrap"><button class="share-btn">Share me with a friend<span class="so-seal badge"><span class="so-sheen"></span></span></button></span></div>
+
+  <h2>Just the badge, actual ~52px</h2>
+  <div class="row"><span class="share-wrap"><span class="so-seal badge"><span class="so-sheen"></span></span></span></div>
+
+  <div class="wag-band">
+    <h2>Wagner mode (gold)</h2>
+    <div class="row"><span class="share-wrap wag"><span class="so-seal big"><span class="so-sheen"></span></span></span></div>
+    <div class="row" style="margin-top:14px"><span class="share-wrap wag"><button class="share-btn">Share me with a friend<span class="so-seal badge"><span class="so-sheen"></span></span></button></span></div>
+  </div>
+
+  <template id="owltpl">
+<svg class="so-owl" viewBox="0 0 64 70" aria-hidden="true">
+  <ellipse cx="32" cy="64.8" rx="12" ry="2.6" fill="#3a230f" opacity=".1"/>
+  <g class="so-feet" fill="#d8a85c">
+    <ellipse cx="25.6" cy="61.4" rx="1.7" ry="2.4"/><ellipse cx="28.3" cy="61.9" rx="1.7" ry="2.5"/><ellipse cx="30.5" cy="61.5" rx="1.5" ry="2.1"/>
+    <ellipse cx="33.5" cy="61.5" rx="1.5" ry="2.1"/><ellipse cx="35.7" cy="61.9" rx="1.7" ry="2.5"/><ellipse cx="38.4" cy="61.4" rx="1.7" ry="2.4"/>
+  </g>
+  <path class="so-body" d="M32 6 C50 6 56 21 56 37 C56 53 46 64 32 64 C18 64 8 53 8 37 C8 21 14 6 32 6 Z"/>
+  <path d="M32 6 C22 6 15 13 12 24 C18 18 26 16 32 16 C38 16 46 18 52 24 C49 13 42 6 32 6 Z" fill="#b87340" opacity=".5"/>
+  <path d="M32 64 C44 64 53 55 55.4 43 C49 53 41 57 32 57 C23 57 15 53 8.6 43 C11 55 20 64 32 64 Z" fill="#6f3e1c" opacity=".3"/>
+  <ellipse cx="32" cy="51" rx="13" ry="11" fill="#c98a52" opacity=".45"/>
+  <g class="so-streak" stroke-width="1.3" stroke-linecap="round" opacity=".4" fill="none">
+    <path d="M24 49 q.6 4 -.2 8"/><path d="M32 50 q.5 4.5 0 9"/><path d="M40 49 q-.6 4 .2 8"/>
+    <path d="M19 46 q.4 3 -.4 6"/><path d="M45 46 q-.4 3 .4 6"/>
+  </g>
+  <g class="so-wingL">
+    <path class="so-wing" d="M46 33 C53 33 59 37 61 45 C61.6 48 60 49.5 57.4 48 C58.4 50.6 56.4 52 54 50.6 C54.6 53 52.4 54 50.4 52 C49 46 47.6 40 45 36.8 C44.5 35.2 45 33.8 46 33 Z"/>
+    <path d="M46.4 35 C51.5 35.5 56 39 58 46 C55.5 42 52 39 46 37.4 C45.4 36 45.8 35.6 46.4 35 Z" fill="#b87340" opacity=".5"/>
+    <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M48 37 C53 40 56.5 45 57.6 48"/><path d="M46.5 39 C51 42 54 47 54 50.4"/><path d="M45 41 C48.5 44 50.5 49 50.6 52"/></g>
+    <path d="M47.5 36 C52 38 55.5 42 57 46" stroke="#fbeed0" stroke-width=".8" fill="none" opacity=".4" stroke-linecap="round"/>
+  </g>
+  <g class="so-wingR">
+    <path class="so-wing" d="M18 33 C11 33 5 37 3 45 C2.4 48 4 49.5 6.6 48 C5.6 50.6 7.6 52 10 50.6 C9.4 53 11.6 54 13.6 52 C15 46 16.4 40 19 36.8 C19.5 35.2 19 33.8 18 33 Z"/>
+    <path d="M17.6 35 C12.5 35.5 8 39 6 46 C8.5 42 12 39 18 37.4 C18.6 36 18.2 35.6 17.6 35 Z" fill="#b87340" opacity=".5"/>
+    <g stroke="#5e3415" stroke-width=".6" fill="none" opacity=".5"><path d="M16 37 C11 40 7.5 45 6.4 48"/><path d="M17.5 39 C13 42 10 47 10 50.4"/><path d="M19 41 C15.5 44 13.5 49 13.4 52"/></g>
+    <path d="M16.5 36 C12 38 8.5 42 7 46" stroke="#fbeed0" stroke-width=".8" fill="none" opacity=".4" stroke-linecap="round"/>
+  </g>
+  <g class="so-crown">
+    <path d="M30.8 9 C30 5.8 30.4 3 32.9 2 C35 1.5 35.8 3.4 34.4 4.7 C33.4 4.2 32.5 4.9 32.1 6.3 C31.8 5.1 31.4 4.6 30.8 9 Z" fill="#b87340"/>
+    <path d="M31.6 8 C31.3 5.6 31.9 3.9 33.7 3.2" fill="none" stroke="#6f3e1c" stroke-width=".5" opacity=".35"/>
+  </g>
+  <g class="so-head">
+    <path class="so-face" d="M32 13 C21 11 13 18 13 29 C13 40 21 47 32 49 C43 47 51 40 51 29 C51 18 43 11 32 13 Z"/>
+    <path d="M32 13 C24 11.6 17.5 15.5 15 23 C20 18 26 16.5 32 16.5 C38 16.5 44 18 49 23 C46.5 15.5 40 11.6 32 13 Z" fill="#fbeed0" opacity=".5"/>
+    <path d="M32 49 C39 47.5 45 43.5 48.4 37 C44 41 38 43 32 43 C26 43 20 41 15.6 37 C19 43.5 25 47.5 32 49 Z" fill="#d9be8e" opacity=".5"/>
+    <path class="so-rim" d="M32 13 C21 11 13 18 13 29 C13 40 21 47 32 49 C43 47 51 40 51 29 C51 18 43 11 32 13 Z" fill="none" stroke="#8a5226" stroke-width="1.1" opacity=".5"/>
+    <g class="so-tuft">
+      <path class="so-face" d="M14 31 q-5 -1 -7 2 q4 0 7 1.6 Z"/>
+      <path class="so-face" d="M50 31 q5 -1 7 2 q-4 0 -7 1.6 Z"/>
+      <path class="so-face" d="M15 38 q-4 1 -5 3.6 q4 -1.4 6 -1.8 Z"/>
+      <path class="so-face" d="M49 38 q4 1 5 3.6 q-4 -1.4 -6 -1.8 Z"/>
+    </g>
+    <path d="M32 16 C31 24 31 36 32 47" stroke="#cdaf7c" stroke-width="1" fill="none" opacity=".5"/>
+    <path d="M19 20 Q24.5 16.8 30 19.4" stroke="#a87238" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/>
+    <path d="M45 20 Q39.5 16.8 34 19.4" stroke="#a87238" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/>
+    <g class="so-eyes">
+      <ellipse cx="25.3" cy="29" rx="7.8" ry="7.3" fill="#3a2812"/>
+      <ellipse cx="25.3" cy="29.2" rx="6.7" ry="6.1" fill="#15100a"/>
+      <ellipse cx="38.7" cy="29" rx="7.8" ry="7.3" fill="#3a2812"/>
+      <ellipse cx="38.7" cy="29.2" rx="6.7" ry="6.1" fill="#15100a"/>
+    </g>
+    <g class="so-glint" fill="#fff">
+      <circle cx="24.3" cy="26.6" r="2.6" opacity=".95"/>
+      <circle cx="26.7" cy="31" r="1.2" opacity=".5"/>
+      <circle cx="37.7" cy="26.6" r="2.6" opacity=".95"/>
+      <circle cx="40.1" cy="31" r="1.2" opacity=".5"/>
+    </g>
+    <path class="so-beak" d="M32 32 C29.9 32 28.5 33.2 28.7 35 C28.9 37 31 38.9 32 38.9 C33 38.9 35.1 37 35.3 35 C35.5 33.2 34.1 32 32 32 Z"/>
+    <path d="M31 32.6 C30 33.2 29.8 34.2 30 35.2 C31 34.3 32 34.1 33 34.3 C33 33.2 32.2 32.6 31 32.6 Z" fill="#e7cf95" opacity=".6"/>
+    <path d="M29.3 39 Q32 41 34.7 39" stroke="#7a531f" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".5"/>
+    <ellipse cx="20.5" cy="36" rx="3.3" ry="2.3" fill="#ed9684" opacity=".5"/>
+    <ellipse cx="43.5" cy="36" rx="3.3" ry="2.3" fill="#ed9684" opacity=".5"/>
+    <g class="so-lid left">
+      <circle cx="25.3" cy="29" r="8" class="so-face"/>
+      <path d="M17.8 29 Q25.3 33.6 32.8 29" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <g class="so-lid both">
+      <circle cx="25.3" cy="29" r="8" class="so-face"/>
+      <circle cx="38.7" cy="29" r="8" class="so-face"/>
+      <path d="M17.8 29 Q25.3 33.6 32.8 29 M31.2 29 Q38.7 33.6 46.2 29" fill="none" stroke="#7a531f" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
+  </template>
+  <script>
+    var TPL=document.getElementById('owltpl').innerHTML;
+    document.querySelectorAll('.so-seal').forEach(function(s){s.insertAdjacentHTML('beforeend',TPL);});
+  </script>
+</body></html>
