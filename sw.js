@@ -21,7 +21,7 @@
  * exactly the app. Registered HTTPS-only from the HTML, so the file:// copy and
  * the local http preview server never touch it.
  */
-const VERSION = 109;
+const VERSION = 110;
 const CACHE = 'jtg-v' + VERSION;
 
 self.addEventListener('install', (event) => {
