@@ -1,4 +1,4 @@
-/* Jan's Tree Game — service worker (offline caching).  Added v103 (user-directed).
+/* UK Tree Game — service worker (offline caching).  Added v103 (user-directed).
  *
  * The whole app is ONE self-contained HTML file: every photo (base64), the
  * synthesised audio (Web Audio — no files), the fonts (@font-face embedded), the
@@ -21,7 +21,7 @@
  * exactly the app. Registered HTTPS-only from the HTML, so the file:// copy and
  * the local http preview server never touch it.
  */
-const VERSION = 113;
+const VERSION = 114;
 const CACHE = 'jtg-v' + VERSION;
 
 self.addEventListener('install', (event) => {
